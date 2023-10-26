@@ -1,0 +1,79 @@
+
+
+-- those in init
+vim.g.dap_log_level = "DEBUG"
+
+local dap = require("dap")
+local dapui = require("dapui")
+
+dap.adapters.c = {
+  type = "executable",
+  name = "gdb",
+  command = "/usr/bin/gdb",
+  args = {
+    "-q", -- Quiet mode
+    "--interpreter=mi2", -- Machine Interface 2
+  },
+  env = {
+    CDPATH = "",
+  },
+  setup = {
+    language = "c",
+    visualStudio = false,
+  },
+  cwd = vim.fn.getcwd(),
+}
+
+dap.configurations.c = {
+  {
+    name = "Launch",
+    type = "c",
+    request = "launch",
+    program = "${fileDirname}/${fileBasenameNoExtension}",
+    args = {},
+    cwd = "${fileDirname}",
+    stopOnEntry = false,
+    runInTerminal = false,
+  },
+}
+
+dap.adapters.python = {
+  type = "executable",
+  command = "/usr/bin/python3",
+  args = { "-m", "debugpy.adapter" },
+}
+
+dap.configurations.python = {
+  {
+    type = "python",
+    request = "launch",
+    name = "Python Debug",
+    program = function()
+      return vim.fn.input("Enter the path to the Python script you want to debug: ")
+    end,
+  },
+}
+
+-- Enable the UI
+dapui.setup()
+
+-- does in keymaps
+-- Keymapping to toggle the UI
+vim.api.nvim_set_keymap("n", "<F4>", ":lua require'dap'.continue()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<F5>", ":lua require'dap'.step_over()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<F6>", ":lua require'dap'.step_into()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<F7>", ":lua require'dap'.step_out()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>z",
+  ":lua require'dap'.toggle_breakpoint()<CR>",
+  { noremap = true, silent = true }
+)
+
+-- Additional keymapping for `dap-ui`
+vim.api.nvim_set_keymap("n", "<leader>d", ":lua require'dapui'.toggle()<CR>", { noremap = true, silent = true })
+
+-- does in options 
+  Plug 'mfussenegger/nvim-dap'
+  Plug 'rcarriga/nvim-dap-ui'
+  Plug 'folke/neodev.nvim'
