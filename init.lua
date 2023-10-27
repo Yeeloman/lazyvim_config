@@ -3,7 +3,7 @@ require("config.lazy")
 require("config.autocmds")
 
 -- Set the Neovim default theme
-vim.cmd("colorscheme challenger_deep")
+vim.cmd("colorscheme momiji")
 
 -- change line colors
 vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#FF00BF" })
@@ -13,6 +13,11 @@ vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#00F9FF" })
 -- Create an autocmd to call the function when Neovim loses focus
 vim.cmd([[autocmd FocusLost * lua setTerminalToNormalMode()]])
 
+-- Define the highlight group for CursorLine and set the background color
+-- vim.cmd([[
+--   highlight CursorLine guibg=#3A4C3E
+-- ]])
+vim.wo.cursorcolumn = true
 -- Enable line wrapping
 vim.wo.wrap = true
 

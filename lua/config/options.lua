@@ -26,6 +26,7 @@ vim.cmd([[
   Plug 'dense-analysis/ale'
   Plug 'wfxr/minimap.vim'
   Plug 'barrett-ruth/live-server.nvim'
+  " Plug 'mattn/emmet-vim' -- for html stuff
   call plug#end()
 ]])
 

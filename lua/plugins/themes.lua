@@ -12,7 +12,10 @@ return {
   { "ayu-theme/ayu-vim" },
   { "kyoh86/momiji" },
   { "NLKNguyen/papercolor-theme" },
-
+  { "catppuccin/nvim", as = "catppuccin" },
+  { "xero/miasma.nvim" },
+  { "maxmx03/dracula.nvim" },
+  { "" },
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
