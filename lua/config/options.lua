@@ -26,10 +26,18 @@ vim.cmd([[
   Plug 'dense-analysis/ale'
   Plug 'wfxr/minimap.vim'
   Plug 'barrett-ruth/live-server.nvim'
+  Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
   " Plug 'mattn/emmet-vim' -- for html stuff
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'JuanDAC/betty-ale-vim'
+  "Plug 'nvim-lualine/lualine.nvim'
+  "Plug 'nvim-tree/nvim-web-devicons'
+  " Plug 'ggandor/lightspeed.nvim'
+  Plug 'Wansmer/treesj'
+  Plug 'junegunn/goyo.vim'
+  Plug 'ap/vim-css-color'
   call plug#end()
 ]])
-
 --add terminal and style it
 require("toggleterm").setup({
   size = 10,
@@ -73,7 +81,8 @@ vim.g.ale_enabled = 1
 -- Specify the linters and fixers for Python
 vim.g.ale_linters = {
   python = { "flake8" },
-  c = { "betty-style", "betty-doc", "gcc" },
+  -- c = { "betty-style", "betty-doc", "gcc" },
+  c = { "betty-style", "betty-doc" },
 }
 
 vim.g.ale_fixers = {

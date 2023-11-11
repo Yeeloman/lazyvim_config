@@ -15,7 +15,6 @@ return {
   { "catppuccin/nvim", as = "catppuccin" },
   { "xero/miasma.nvim" },
   { "maxmx03/dracula.nvim" },
-  { "" },
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",

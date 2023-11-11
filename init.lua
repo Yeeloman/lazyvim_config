@@ -1,6 +1,7 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 require("config.autocmds")
+require("config.disable")
 
 -- Set the Neovim default theme
 vim.cmd("colorscheme momiji")
@@ -14,9 +15,16 @@ vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#00F9FF" })
 vim.cmd([[autocmd FocusLost * lua setTerminalToNormalMode()]])
 
 -- Define the highlight group for CursorLine and set the background color
--- vim.cmd([[
---   highlight CursorLine guibg=#3A4C3E
--- ]])
+-- guibg=#3A4C3E for background color
+-- guifg=#ffffff for text color
+-- gui uderline
+vim.cmd([[
+  highlight CursorLine guibg=none gui=bold,standout
+]])
+-- change the color of selection
+vim.cmd([[
+  hi Visual guibg=#7108BF guifg=#ffffff
+]])
 vim.wo.cursorcolumn = true
 -- Enable line wrapping
 vim.wo.wrap = true
@@ -36,7 +44,6 @@ vim.api.nvim_exec(
 ]],
   false
 )
-
 -- Change line highlight background color
 -- vim.cmd([[highlight! link CursorLine MyCursorLine]])
 -- vim.cmd([[highlight mycursorline guibg=#212026 gui=bold,italic]])
@@ -59,4 +66,33 @@ vim.api.nvim_exec(
 -- live server
 require("live-server").setup(opts)
 --make lazyvim fully transparent
-vim.cmd("hi Normal guibg=#1122337A ctermbg=237")
+-- vim.cmd("hi Normal guibg=#1122337A ctermbg=237")
+
+-- Set the encoding to UTF-8
+vim.cmd("set encoding=UTF-8")
+
+-- -- to add lua lines
+-- local theme_status = require("statustheme")
+-- require("lualine").setup({
+--   options = { theme = theme_status },
+--   ...,
+-- })
+
+-- Automatically run mkview on save
+vim.api.nvim_exec(
+  [[
+  autocmd BufWritePost * mkview
+]],
+  false
+)
+
+-- Automatically run loadview on startup
+vim.api.nvim_exec(
+  [[
+  autocmd VimEnter * silent! loadview
+]],
+  false
+)
+
+require("treesj").setup({--[[ your config ]]
+})

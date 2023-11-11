@@ -2,7 +2,7 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-vim.api.nvim_set_keymap("n", "<M-œ>", "<cmd>SomeCommand<cr>", {})
+vim.api.nvim_set_keymap("n", "<M-s>", "<cmd>SomeCommand<cr>", {})
 
 -- Define a keymapping to execute the current file using Python 3
 vim.api.nvim_set_keymap("n", "<Leader>p", ":!python3 %<CR>", { noremap = true, silent = true })
@@ -32,3 +32,19 @@ vim.api.nvim_set_keymap("n", "<M-j>", "<C-w>j", { noremap = true })
 vim.api.nvim_set_keymap("n", "<M-k>", "<C-w>k", { noremap = true })
 -- Map Ctrl-l to move to the right window
 vim.api.nvim_set_keymap("n", "<M-l>", "<C-w>l", { noremap = true })
+
+-- Map the arrow keys to do nothing in normal mode
+vim.api.nvim_set_keymap("n", "<Up>", "<Nop>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Down>", "<Nop>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Left>", "<Nop>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Right>", "<Nop>", { noremap = true, silent = true })
+
+-- For use default preset and it work with dot
+vim.keymap.set("n", "<leader>m", require("treesj").toggle)
+-- For extending default preset with `recursive = true`, but this doesn't work with dot
+vim.keymap.set("n", "<leader>M", function()
+  require("treesj").toggle({ split = { recursive = true } })
+end)
+
+-- Map Goyo mode to toggle focus
+vim.api.nvim_set_keymap("n", "<leader>fa", "<cmd>Goyo<cr>", {})
